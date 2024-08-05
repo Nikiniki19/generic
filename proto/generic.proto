@@ -1,0 +1,23 @@
+syntax="proto3";
+
+option go_package="./proto";
+
+package generic;
+
+service GenericRequest{
+    rpc FetchUser(GenericClientID)returns(GenericResponse);
+}
+
+message GenericClientID{
+    uint32 id = 1;
+};
+
+message GenericResponse{
+    string username=1;
+    string email=2;
+    string password=3;
+}
+
+
+
+//protoc --go_out=proto/ --go_opt=paths=source_relative --go-grpc_out=proto/ --go-grpc_opt=paths=source_relative --proto_path=proto engine.proto
